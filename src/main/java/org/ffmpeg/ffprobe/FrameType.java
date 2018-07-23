@@ -7,11 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -75,8 +71,7 @@ import org.xml.sax.Locator;
     "logs",
     "sideDataList"
 })
-public class FrameType implements Locatable
-{
+public class FrameType {
 
     protected List<TagType> tag;
     protected LogsType logs;
@@ -150,9 +145,6 @@ public class FrameType implements Locatable
     protected String colorTransfer;
     @XmlAttribute(name = "chroma_location")
     protected String chromaLocation;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the tag property.
@@ -1037,14 +1029,6 @@ public class FrameType implements Locatable
      */
     public void setChromaLocation(String value) {
         this.chromaLocation = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

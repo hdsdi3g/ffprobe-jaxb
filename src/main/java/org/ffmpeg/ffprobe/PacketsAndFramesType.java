@@ -7,11 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -41,9 +37,7 @@ import org.xml.sax.Locator;
 @XmlType(name = "packetsAndFramesType", propOrder = {
     "packetOrFrameOrSubtitle"
 })
-public class PacketsAndFramesType
-    implements Locatable
-{
+public class PacketsAndFramesType {
 
     @XmlElements({
         @XmlElement(name = "packet", type = PacketType.class),
@@ -51,9 +45,6 @@ public class PacketsAndFramesType
         @XmlElement(name = "subtitle", type = SubtitleType.class)
     })
     protected List<Object> packetOrFrameOrSubtitle;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the packetOrFrameOrSubtitle property.
@@ -84,14 +75,6 @@ public class PacketsAndFramesType
             packetOrFrameOrSubtitle = new ArrayList<Object>();
         }
         return this.packetOrFrameOrSubtitle;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

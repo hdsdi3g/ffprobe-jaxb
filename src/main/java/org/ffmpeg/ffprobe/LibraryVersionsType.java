@@ -6,11 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -36,15 +32,10 @@ import org.xml.sax.Locator;
 @XmlType(name = "libraryVersionsType", propOrder = {
     "libraryVersion"
 })
-public class LibraryVersionsType
-    implements Locatable
-{
+public class LibraryVersionsType {
 
     @XmlElement(name = "library_version")
     protected List<LibraryVersionType> libraryVersion;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the libraryVersion property.
@@ -73,14 +64,6 @@ public class LibraryVersionsType
             libraryVersion = new ArrayList<LibraryVersionType>();
         }
         return this.libraryVersion;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

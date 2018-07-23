@@ -4,11 +4,7 @@ package org.ffmpeg.ffprobe;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -41,9 +37,7 @@ import org.xml.sax.Locator;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "streamDispositionType")
-public class StreamDispositionType
-    implements Locatable
-{
+public class StreamDispositionType {
 
     @XmlAttribute(name = "default", required = true)
     protected int _default;
@@ -69,9 +63,6 @@ public class StreamDispositionType
     protected int attachedPic;
     @XmlAttribute(name = "timed_thumbnails", required = true)
     protected int timedThumbnails;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the default property.
@@ -263,14 +254,6 @@ public class StreamDispositionType
      */
     public void setTimedThumbnails(int value) {
         this.timedThumbnails = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

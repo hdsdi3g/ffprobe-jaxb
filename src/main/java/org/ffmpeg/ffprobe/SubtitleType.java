@@ -4,11 +4,7 @@ package org.ffmpeg.ffprobe;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -36,8 +32,7 @@ import org.xml.sax.Locator;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "subtitleType")
-public class SubtitleType implements Locatable
-{
+public class SubtitleType {
 
     @XmlAttribute(name = "media_type", required = true)
     protected String mediaType;
@@ -53,9 +48,6 @@ public class SubtitleType implements Locatable
     protected Integer endDisplayTime;
     @XmlAttribute(name = "num_rects")
     protected Integer numRects;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the mediaType property.
@@ -227,14 +219,6 @@ public class SubtitleType implements Locatable
      */
     public void setNumRects(Integer value) {
         this.numRects = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

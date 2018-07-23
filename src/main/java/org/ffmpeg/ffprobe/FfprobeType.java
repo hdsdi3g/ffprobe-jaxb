@@ -4,11 +4,7 @@ package org.ffmpeg.ffprobe;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -54,9 +50,7 @@ import org.xml.sax.Locator;
     "format",
     "error"
 })
-public class FfprobeType
-    implements Locatable
-{
+public class FfprobeType {
 
     @XmlElement(name = "program_version")
     protected ProgramVersionType programVersion;
@@ -73,9 +67,6 @@ public class FfprobeType
     protected ChaptersType chapters;
     protected FormatType format;
     protected ErrorType error;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the programVersion property.
@@ -339,14 +330,6 @@ public class FfprobeType
      */
     public void setError(ErrorType value) {
         this.error = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

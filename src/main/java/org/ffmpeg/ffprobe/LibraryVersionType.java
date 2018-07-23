@@ -4,11 +4,7 @@ package org.ffmpeg.ffprobe;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -35,9 +31,7 @@ import org.xml.sax.Locator;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "libraryVersionType")
-public class LibraryVersionType
-    implements Locatable
-{
+public class LibraryVersionType {
 
     @XmlAttribute(name = "name", required = true)
     protected String name;
@@ -51,9 +45,6 @@ public class LibraryVersionType
     protected int version;
     @XmlAttribute(name = "ident", required = true)
     protected String ident;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the name property.
@@ -165,14 +156,6 @@ public class LibraryVersionType
      */
     public void setIdent(String value) {
         this.ident = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

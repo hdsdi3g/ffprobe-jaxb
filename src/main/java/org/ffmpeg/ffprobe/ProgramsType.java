@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -35,14 +31,9 @@ import org.xml.sax.Locator;
 @XmlType(name = "programsType", propOrder = {
     "program"
 })
-public class ProgramsType
-    implements Locatable
-{
+public class ProgramsType {
 
     protected List<ProgramType> program;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the program property.
@@ -71,14 +62,6 @@ public class ProgramsType
             program = new ArrayList<ProgramType>();
         }
         return this.program;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

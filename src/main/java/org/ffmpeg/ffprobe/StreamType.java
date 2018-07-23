@@ -7,11 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -87,9 +83,7 @@ import org.xml.sax.Locator;
     "tag",
     "sideDataList"
 })
-public class StreamType
-    implements Locatable
-{
+public class StreamType {
 
     protected StreamDispositionType disposition;
     protected List<TagType> tag;
@@ -187,9 +181,6 @@ public class StreamType
     protected Integer nbReadFrames;
     @XmlAttribute(name = "nb_read_packets")
     protected Integer nbReadPackets;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the disposition property.
@@ -1362,14 +1353,6 @@ public class StreamType
      */
     public void setNbReadPackets(Integer value) {
         this.nbReadPackets = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

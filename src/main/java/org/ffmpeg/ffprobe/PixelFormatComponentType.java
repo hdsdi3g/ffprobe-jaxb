@@ -4,11 +4,7 @@ package org.ffmpeg.ffprobe;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -31,17 +27,12 @@ import org.xml.sax.Locator;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "pixelFormatComponentType")
-public class PixelFormatComponentType
-    implements Locatable
-{
+public class PixelFormatComponentType {
 
     @XmlAttribute(name = "index", required = true)
     protected int index;
     @XmlAttribute(name = "bit_depth", required = true)
     protected int bitDepth;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the index property.
@@ -73,14 +64,6 @@ public class PixelFormatComponentType
      */
     public void setBitDepth(int value) {
         this.bitDepth = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

@@ -4,11 +4,7 @@ package org.ffmpeg.ffprobe;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -41,9 +37,7 @@ import org.xml.sax.Locator;
     "flags",
     "components"
 })
-public class PixelFormatType
-    implements Locatable
-{
+public class PixelFormatType {
 
     protected PixelFormatFlagsType flags;
     protected PixelFormatComponentsType components;
@@ -57,9 +51,6 @@ public class PixelFormatType
     protected Integer log2ChromaH;
     @XmlAttribute(name = "bits_per_pixel")
     protected Integer bitsPerPixel;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the flags property.
@@ -219,14 +210,6 @@ public class PixelFormatType
      */
     public void setBitsPerPixel(Integer value) {
         this.bitsPerPixel = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

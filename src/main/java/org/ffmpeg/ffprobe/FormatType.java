@@ -6,11 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -46,9 +42,7 @@ import org.xml.sax.Locator;
 @XmlType(name = "formatType", propOrder = {
     "tag"
 })
-public class FormatType
-    implements Locatable
-{
+public class FormatType {
 
     protected List<TagType> tag;
     @XmlAttribute(name = "filename", required = true)
@@ -71,9 +65,6 @@ public class FormatType
     protected Long bitRate;
     @XmlAttribute(name = "probe_score")
     protected Integer probeScore;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the tag property.
@@ -326,14 +317,6 @@ public class FormatType
      */
     public void setProbeScore(Integer value) {
         this.probeScore = value;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -35,14 +31,9 @@ import org.xml.sax.Locator;
 @XmlType(name = "pixelFormatComponentsType", propOrder = {
     "component"
 })
-public class PixelFormatComponentsType
-    implements Locatable
-{
+public class PixelFormatComponentsType {
 
     protected List<PixelFormatComponentType> component;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the component property.
@@ -71,14 +62,6 @@ public class PixelFormatComponentsType
             component = new ArrayList<PixelFormatComponentType>();
         }
         return this.component;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }

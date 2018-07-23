@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
-import com.sun.xml.internal.bind.Locatable;
-import com.sun.xml.internal.bind.annotation.XmlLocation;
-import org.xml.sax.Locator;
 
 
 /**
@@ -35,14 +31,9 @@ import org.xml.sax.Locator;
 @XmlType(name = "chaptersType", propOrder = {
     "chapter"
 })
-public class ChaptersType
-    implements Locatable
-{
+public class ChaptersType {
 
     protected List<ChapterType> chapter;
-    @XmlLocation
-    @XmlTransient
-    protected Locator locator;
 
     /**
      * Gets the value of the chapter property.
@@ -71,14 +62,6 @@ public class ChaptersType
             chapter = new ArrayList<ChapterType>();
         }
         return this.chapter;
-    }
-
-    public Locator sourceLocation() {
-        return locator;
-    }
-
-    public void setSourceLocation(Locator newLocator) {
-        locator = newLocator;
     }
 
 }
