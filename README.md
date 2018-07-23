@@ -2,8 +2,6 @@ Use with Java and JAXB API for import [ffprobe](https://ffmpeg.org/ffprobe.html)
 
 Used by my project [OnRoadMediaSender](https://github.com/hdsdi3g/OnRoadMediaSender)
 
-(you can ignore the french comments, it's auto generated).
-
 Usage, with Java 8:
 ```java
 import javax.xml.bind.JAXBContext;
@@ -48,4 +46,4 @@ FfprobeType analyst_result = result.getValue();
 ```
 BEWARE TO NOT LOAD XML RAW TEXT DIRECTLY INTO Unmarshaller: BIG PROBLEMS WITH XSD REFS !
 
-Code automatically generated with `xjc -p org.ffmpeg.ffprobe https://github.com/FFmpeg/FFmpeg/raw/master/doc/ffprobe.xsd`.
+Code automatically generated with `xjc`. See update.sh for exact method.
