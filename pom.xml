@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.ffmpeg</groupId>
+  <artifactId>ffprobe-jaxb</artifactId>
+  <packaging>jar</packaging>
+  <version>4.0.2</version>
+  <name>ffprobe-jaxb</name>
+  <url>https://github.com/hdsdi3g/ffprobe-jaxb</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<maven.compiler.source>8</maven.compiler.source>
+	<maven.compiler.target>8</maven.compiler.target>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <organization>
+  	<name>hd3g.tv</name>
+  	<url>https://hd3g.tv</url>
+  </organization>
+  <scm>
+	<connection>scm:git:https://github.com/hdsdi3g/ffprobe-jaxb.git</connection>
+	<developerConnection>scm:git:https://github.com/hdsdi3g/ffprobe-jaxb.git</developerConnection>
+	<url>https://github.com/hdsdi3g</url>
+	<tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+  	<url>https://github.com/hdsdi3g/ffprobe-jaxb/issues</url>
+  	<system>GitHub</system>
+  </issueManagement>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+</project>
