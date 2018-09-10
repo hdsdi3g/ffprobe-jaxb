@@ -54,25 +54,28 @@ public class FFprobeJAXB {
 	
 	public final FfprobeType probe_result;
 	
-	public FFprobeJAXB(String xml_content, Consumer<String> onWarnLog) throws JAXBException, ParserConfigurationException, SAXException, IOException {
-		JAXBContext jc = JAXBContext.newInstance("org.ffmpeg.ffprobe");
-		
-		Unmarshaller unmarshaller = jc.createUnmarshaller();
-		// prepare an error catcher if trouble are catched during import.
-		unmarshaller.setEventHandler((ValidationEventHandler) e -> {
-			ValidationEventLocator localtor = e.getLocator();
-			onWarnLog.accept("XML validation: " + e.getMessage() + " [s" + e.getSeverity() + "] at line " + localtor.getLineNumber() + ", column " + localtor.getColumnNumber() + " offset " + localtor.getOffset() + " node: " + localtor.getNode() + ", object " + localtor.getObject());
-			return true;
-		});
-		
-		DocumentBuilderFactory xmlDocumentBuilderFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder xmlDocumentBuilder = xmlDocumentBuilderFactory.newDocumentBuilder();
-		xmlDocumentBuilder.setErrorHandler(null);
-		
-		Document document = xmlDocumentBuilder.parse(new ByteArrayInputStream(xml_content.getBytes(StandardCharsets.UTF_8)));
-		
-		JAXBElement<FfprobeType> result = unmarshaller.unmarshal(document, FfprobeType.class);
-		probe_result = result.getValue();
+	public FFprobeJAXB(String xml_content, Consumer<String> onWarnLog) throws IOException {
+		try {
+			JAXBContext jc = JAXBContext.newInstance("org.ffmpeg.ffprobe");
+			Unmarshaller unmarshaller = jc.createUnmarshaller();
+			// prepare an error catcher if trouble are catched during import.
+			unmarshaller.setEventHandler((ValidationEventHandler) e -> {
+				ValidationEventLocator localtor = e.getLocator();
+				onWarnLog.accept("XML validation: " + e.getMessage() + " [s" + e.getSeverity() + "] at line " + localtor.getLineNumber() + ", column " + localtor.getColumnNumber() + " offset " + localtor.getOffset() + " node: " + localtor.getNode() + ", object " + localtor.getObject());
+				return true;
+			});
+			
+			DocumentBuilderFactory xmlDocumentBuilderFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder xmlDocumentBuilder = xmlDocumentBuilderFactory.newDocumentBuilder();
+			xmlDocumentBuilder.setErrorHandler(null);
+			
+			Document document = xmlDocumentBuilder.parse(new ByteArrayInputStream(xml_content.getBytes(StandardCharsets.UTF_8)));
+			
+			JAXBElement<FfprobeType> result = unmarshaller.unmarshal(document, FfprobeType.class);
+			probe_result = result.getValue();
+		} catch (JAXBException | SAXException | ParserConfigurationException e1) {
+			throw new IOException("Can't load XML content", e1);
+		}
 	}
 	
 	public List<ChapterType> getChapters() {
