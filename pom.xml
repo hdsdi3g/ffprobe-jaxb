@@ -1,109 +1,108 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <groupId>org.ffmpeg</groupId>
-  <artifactId>ffprobe-jaxb</artifactId>
-  <version>4.0.2-2</version>
-  <packaging>jar</packaging>
-  
-  <name>ffprobe-jaxb</name>
-  <url>https://github.com/hdsdi3g/ffprobe-jaxb</url>
-  
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<maven.compiler.source>11</maven.compiler.source>
-	<maven.compiler.target>11</maven.compiler.target>
-    <maven.javadoc.skip>true</maven.javadoc.skip>
-  </properties>
-  
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- 
-    https://stackoverflow.com/questions/50237516/proper-fix-for-java-10-complaining-about-illegal-reflection-access-by-jaxb-impl
-    -->
-	<dependency>
-	    <groupId>javax.xml.bind</groupId>
-	    <artifactId>jaxb-api</artifactId>
-	    <version>2.4.0-b180725.0427</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.glassfish.jaxb</groupId>
-	    <artifactId>jaxb-runtime</artifactId>
-	     <!--<version>2.4.0</version> not released yet -->
-	    <version>2.4.0-b180608.0325</version>
-	</dependency>
-</dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <organization>
-  	<name>hd3g.tv</name>
-  	<url>https://hd3g.tv</url>
-  </organization>
-  <scm>
-	<connection>scm:git:https://github.com/hdsdi3g/ffprobe-jaxb.git</connection>
-	<developerConnection>scm:git:https://github.com/hdsdi3g/ffprobe-jaxb.git</developerConnection>
-	<url>https://github.com/hdsdi3g</url>
-	<tag>HEAD</tag>
-  </scm>
-  <issueManagement>
-  	<url>https://github.com/hdsdi3g/ffprobe-jaxb/issues</url>
-  	<system>GitHub</system>
-  </issueManagement>
-  <licenses>
-    <license>
-      <name>Apache License 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+	<groupId>org.ffmpeg</groupId>
+	<artifactId>ffprobe-jaxb</artifactId>
+	<version>4.0.2-2</version>
+	<packaging>jar</packaging>
 
-        <build>
-                <plugins>
-                        <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-source-plugin</artifactId>
-                                <version>3.0.1</version>
-								<executions>
-									<execution>
-									  <id>attach-sources</id>
-									  <goals>
-										<goal>jar</goal>
-									  </goals>
-									</execution>
-								</executions>
-                        </plugin>
-                        <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-deploy-plugin</artifactId>
-                                <version>2.8.2</version>
-                        </plugin>
+	<name>ffprobe-jaxb</name>
+	<url>https://github.com/hdsdi3g/ffprobe-jaxb</url>
 
-                </plugins>
-                <extensions>
-                        <extension>
-                                <groupId>org.apache.maven.wagon</groupId>
-                                <artifactId>wagon-ssh</artifactId>
-                                <version>2.8</version>
-                        </extension>
-                </extensions>
-        </build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://stackoverflow.com/questions/50237516/proper-fix-for-java-10-complaining-about-illegal-reflection-access-by-jaxb-impl -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.4.0-b180725.0427</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<!--<version>2.4.0</version> not released yet -->
+			<version>2.4.0-b180608.0325</version>
+		</dependency>
+	</dependencies>
+
+	<organization>
+		<name>hd3g.tv</name>
+		<url>https://hd3g.tv</url>
+	</organization>
+	<scm>
+		<connection>scm:git:https://github.com/hdsdi3g/ffprobe-jaxb.git</connection>
+		<developerConnection>scm:git:https://github.com/hdsdi3g/ffprobe-jaxb.git</developerConnection>
+		<url>https://github.com/hdsdi3g</url>
+		<tag>HEAD</tag>
+	</scm>
+	<issueManagement>
+		<url>https://github.com/hdsdi3g/ffprobe-jaxb/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+			</plugin>
+
+		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.8</version>
+			</extension>
+		</extensions>
+	</build>
 
 	<repositories>
-	  <repository>
-	    <id>Maven promoted</id>
-	    <url>https://maven.java.net/content/groups/promoted/</url>
-	    <releases>
-	      <enabled>true</enabled>
-	    </releases>
-	    <snapshots>
-	      <enabled>true</enabled>
-	    </snapshots>
-	  </repository>
-	</repositories>  
+		<repository>
+			<id>Maven promoted</id>
+			<url>https://maven.java.net/content/groups/promoted/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>
