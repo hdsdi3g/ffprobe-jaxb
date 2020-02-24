@@ -9,6 +9,7 @@
 
 	<name>ffprobejaxb</name>
 	<url>https://github.com/hdsdi3g/ffprobe-jaxb</url>
+    <description>Import in Java Objects the struct of ffprobe XML return</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
