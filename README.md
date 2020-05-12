@@ -1,8 +1,8 @@
 Use with Java and JAXB API for import [ffprobe](https://ffmpeg.org/ffprobe.html) xml result.
 
-Used by my project [OnRoadMediaSender](https://github.com/hdsdi3g/OnRoadMediaSender)
+![Java CI with Maven](https://github.com/hdsdi3g/ffprobe-jaxb/workflows/Java%20CI%20with%20Maven/badge.svg)
 
-Usage, with Java 8:
+Usage, with Java 8+:
 ```java
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
