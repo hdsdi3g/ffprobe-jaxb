@@ -11,28 +11,24 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Lesser General Public License for more details.
  *
- * Copyright (C) hdsdi3g for hd3g.tv 2018
- * 
+ * Copyright (C) hdsdi3g for hd3g.tv 2018-2020
+ *
  */
 package tv.hd3g.ffprobejaxb;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static javax.xml.XMLConstants.ACCESS_EXTERNAL_DTD;
+import static javax.xml.XMLConstants.ACCESS_EXTERNAL_SCHEMA;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import org.w3c.dom.Document;
-
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.ValidationEventHandler;
-import javax.xml.bind.ValidationEventLocator;
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -50,65 +46,79 @@ import org.xml.sax.SAXException;
 
 public class FFprobeJAXB {
 
-	public final FfprobeType probe_result;
+	public final FfprobeType probeResult;
+	private final String xmlContent;
 
-	public FFprobeJAXB(final String xml_content, final Consumer<String> onWarnLog) throws IOException {
+	public FFprobeJAXB(final String xmlContent, final Consumer<String> onWarnLog) throws IOException {
+		this.xmlContent = xmlContent;
 		try {
-			final JAXBContext jc = JAXBContext.newInstance("org.ffmpeg.ffprobe");
-			final Unmarshaller unmarshaller = jc.createUnmarshaller();
-			// prepare an error catcher if trouble are catched during import.
-			unmarshaller.setEventHandler((ValidationEventHandler) e -> {
-				final ValidationEventLocator localtor = e.getLocator();
-				onWarnLog.accept("XML validation: " + e.getMessage() + " [s" + e.getSeverity() + "] at line " + localtor
-				        .getLineNumber() + ", column " + localtor.getColumnNumber() + " offset " + localtor.getOffset()
-				                 + " node: " + localtor.getNode() + ", object " + localtor.getObject());
+			final var jc = JAXBContext.newInstance("org.ffmpeg.ffprobe");
+			final var unmarshaller = jc.createUnmarshaller();
+
+			/**
+			 * Prepare an error catcher if trouble are catched during import.
+			 */
+			unmarshaller.setEventHandler(e -> {
+				final var locator = e.getLocator();
+				onWarnLog.accept("XML validation: "
+				                 + e.getMessage() + " [s"
+				                 + e.getSeverity() + "] at line "
+				                 + locator.getLineNumber() + ", column "
+				                 + locator.getColumnNumber() + " offset "
+				                 + locator.getOffset() + " node: "
+				                 + locator.getNode() + ", object "
+				                 + locator.getObject());
 				return true;
 			});
 
-			final DocumentBuilderFactory xmlDocumentBuilderFactory = DocumentBuilderFactory.newInstance();
-			final DocumentBuilder xmlDocumentBuilder = xmlDocumentBuilderFactory.newDocumentBuilder();
+			final var xmlDocumentBuilderFactory = DocumentBuilderFactory.newInstance();// NOSONAR
+			xmlDocumentBuilderFactory.setAttribute(ACCESS_EXTERNAL_DTD, "");
+			xmlDocumentBuilderFactory.setAttribute(ACCESS_EXTERNAL_SCHEMA, "");
+			final var xmlDocumentBuilder = xmlDocumentBuilderFactory.newDocumentBuilder();
 			xmlDocumentBuilder.setErrorHandler(null);
 
-			final Document document = xmlDocumentBuilder.parse(new ByteArrayInputStream(xml_content.getBytes(
-			        StandardCharsets.UTF_8)));
+			final var document = xmlDocumentBuilder.parse(new ByteArrayInputStream(xmlContent.getBytes(UTF_8)));
 
-			final JAXBElement<FfprobeType> result = unmarshaller.unmarshal(document, FfprobeType.class);
-			probe_result = result.getValue();
+			probeResult = unmarshaller.unmarshal(document, FfprobeType.class).getValue();
 		} catch (JAXBException | SAXException | ParserConfigurationException e1) {
 			throw new IOException("Can't load XML content", e1);
 		}
 	}
 
+	public String getXmlContent() {
+		return xmlContent;
+	}
+
 	public List<ChapterType> getChapters() {
-		return probe_result.getChapters().getChapter();
+		return probeResult.getChapters().getChapter();
 	}
 
 	public List<StreamType> getStreams() {
-		return probe_result.getStreams().getStream();
+		return probeResult.getStreams().getStream();
 	}
 
 	public FormatType getFormat() {
-		return probe_result.getFormat();
+		return probeResult.getFormat();
 	}
 
 	public ErrorType getError() {
-		return probe_result.getError();
+		return probeResult.getError();
 	}
 
 	public ProgramVersionType getProgramVersion() {
-		return probe_result.getProgramVersion();
+		return probeResult.getProgramVersion();
 	}
 
 	public List<LibraryVersionType> getLibraryVersions() {
-		return probe_result.getLibraryVersions().getLibraryVersion();
+		return probeResult.getLibraryVersions().getLibraryVersion();
 	}
 
 	public List<PixelFormatType> getPixelFormats() {
-		return probe_result.getPixelFormats().getPixelFormat();
+		return probeResult.getPixelFormats().getPixelFormat();
 	}
 
 	public List<PacketType> getPackets() {
-		return probe_result.getPackets().getPacket();
+		return probeResult.getPackets().getPacket();
 	}
 
 	/**
@@ -116,7 +126,7 @@ public class FFprobeJAXB {
 	 * {@link SubtitleType }
 	 */
 	public List<Object> getFrames() {
-		return probe_result.getFrames().getFrameOrSubtitle();
+		return probeResult.getFrames().getFrameOrSubtitle();
 	}
 
 	/**
@@ -125,19 +135,19 @@ public class FFprobeJAXB {
 	 * {@link SubtitleType }
 	 */
 	public List<Object> getPacketsAndFrames() {
-		return probe_result.getPacketsAndFrames().getPacketOrFrameOrSubtitle();
+		return probeResult.getPacketsAndFrames().getPacketOrFrameOrSubtitle();
 	}
 
 	public List<ProgramType> getPrograms() {
-		return probe_result.getPrograms().getProgram();
+		return probeResult.getPrograms().getProgram();
 	}
 
-	public static final Predicate<StreamType> filterVideoStream = stream_type -> stream_type.getCodecType().equals(
-	        "video");
-	public static final Predicate<StreamType> filterAudioStream = stream_type -> stream_type.getCodecType().equals(
-	        "audio");
-	public static final Predicate<StreamType> filterDataStream = stream_type -> stream_type.getCodecType().equals(
-	        "data");
+	public static final Predicate<StreamType> filterVideoStream = streamType -> streamType
+	        .getCodecType().equals("video");
+	public static final Predicate<StreamType> filterAudioStream = streamType -> streamType
+	        .getCodecType().equals("audio");
+	public static final Predicate<StreamType> filterDataStream = streamType -> streamType
+	        .getCodecType().equals("data");
 
 	public Stream<StreamType> getVideoStreams() {
 		return getStreams().stream().filter(filterVideoStream);
