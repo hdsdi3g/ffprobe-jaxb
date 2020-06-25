@@ -4,7 +4,7 @@
 
 	<groupId>tv.hd3g</groupId>
 	<artifactId>ffprobejaxb</artifactId>
-	<version>4.2.2-2-SNAPSHOT</version>
+	<version>4.2.2-2</version>
 	<packaging>jar</packaging>
 
 	<name>ffprobejaxb</name>
