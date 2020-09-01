@@ -6,6 +6,8 @@ Use with Java and JAXB API for import [ffprobe](https://ffmpeg.org/ffprobe.html)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hdsdi3g_ffprobe-jaxb&metric=alert_status)](https://sonarcloud.io/dashboard?id=hdsdi3g_ffprobe-jaxb)
 
+![CodeQL](https://github.com/hdsdi3g/ffprobe-jaxb/workflows/CodeQL/badge.svg)
+
 Start ffprobe like:
 
 ```shell
