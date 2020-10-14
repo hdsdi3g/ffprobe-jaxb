@@ -22,7 +22,9 @@ import static javax.xml.XMLConstants.ACCESS_EXTERNAL_SCHEMA;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -33,23 +35,33 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.ffmpeg.ffprobe.ChapterType;
+import org.ffmpeg.ffprobe.ChaptersType;
 import org.ffmpeg.ffprobe.ErrorType;
 import org.ffmpeg.ffprobe.FfprobeType;
 import org.ffmpeg.ffprobe.FormatType;
+import org.ffmpeg.ffprobe.FramesType;
 import org.ffmpeg.ffprobe.LibraryVersionType;
+import org.ffmpeg.ffprobe.LibraryVersionsType;
 import org.ffmpeg.ffprobe.PacketType;
+import org.ffmpeg.ffprobe.PacketsAndFramesType;
+import org.ffmpeg.ffprobe.PacketsType;
 import org.ffmpeg.ffprobe.PixelFormatType;
+import org.ffmpeg.ffprobe.PixelFormatsType;
 import org.ffmpeg.ffprobe.ProgramType;
 import org.ffmpeg.ffprobe.ProgramVersionType;
+import org.ffmpeg.ffprobe.ProgramsType;
 import org.ffmpeg.ffprobe.StreamType;
+import org.ffmpeg.ffprobe.StreamsType;
 import org.xml.sax.SAXException;
+
+import tv.hd3g.commons.IORuntimeException;
 
 public class FFprobeJAXB {
 
 	public final FfprobeType probeResult;
 	private final String xmlContent;
 
-	public FFprobeJAXB(final String xmlContent, final Consumer<String> onWarnLog) throws IOException {
+	public FFprobeJAXB(final String xmlContent, final Consumer<String> onWarnLog) {
 		this.xmlContent = xmlContent;
 		try {
 			final var jc = JAXBContext.newInstance("org.ffmpeg.ffprobe");
@@ -80,8 +92,10 @@ public class FFprobeJAXB {
 			final var document = xmlDocumentBuilder.parse(new ByteArrayInputStream(xmlContent.getBytes(UTF_8)));
 
 			probeResult = unmarshaller.unmarshal(document, FfprobeType.class).getValue();
-		} catch (JAXBException | SAXException | ParserConfigurationException e1) {
-			throw new IOException("Can't load XML content", e1);
+		} catch (JAXBException | SAXException | ParserConfigurationException e) {
+			throw new IORuntimeException(new IOException("Can't load XML content", e));
+		} catch (final IOException e1) {
+			throw new IORuntimeException(e1);
 		}
 	}
 
@@ -90,35 +104,56 @@ public class FFprobeJAXB {
 	}
 
 	public List<ChapterType> getChapters() {
-		return probeResult.getChapters().getChapter();
+		return Optional.ofNullable(probeResult.getChapters())
+		        .map(ChaptersType::getChapter)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	public List<StreamType> getStreams() {
-		return probeResult.getStreams().getStream();
+		return Optional.ofNullable(probeResult.getStreams())
+		        .map(StreamsType::getStream)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	public FormatType getFormat() {
 		return probeResult.getFormat();
 	}
 
+	/**
+	 * @return nullable
+	 */
 	public ErrorType getError() {
 		return probeResult.getError();
 	}
 
+	/**
+	 * @return nullable
+	 */
 	public ProgramVersionType getProgramVersion() {
 		return probeResult.getProgramVersion();
 	}
 
 	public List<LibraryVersionType> getLibraryVersions() {
-		return probeResult.getLibraryVersions().getLibraryVersion();
+		return Optional.ofNullable(probeResult.getLibraryVersions())
+		        .map(LibraryVersionsType::getLibraryVersion)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	public List<PixelFormatType> getPixelFormats() {
-		return probeResult.getPixelFormats().getPixelFormat();
+		return Optional.ofNullable(probeResult.getPixelFormats())
+		        .map(PixelFormatsType::getPixelFormat)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	public List<PacketType> getPackets() {
-		return probeResult.getPackets().getPacket();
+		return Optional.ofNullable(probeResult.getPackets())
+		        .map(PacketsType::getPacket)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	/**
@@ -126,7 +161,10 @@ public class FFprobeJAXB {
 	 * {@link SubtitleType }
 	 */
 	public List<Object> getFrames() {
-		return probeResult.getFrames().getFrameOrSubtitle();
+		return Optional.ofNullable(probeResult.getFrames())
+		        .map(FramesType::getFrameOrSubtitle)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	/**
@@ -135,11 +173,17 @@ public class FFprobeJAXB {
 	 * {@link SubtitleType }
 	 */
 	public List<Object> getPacketsAndFrames() {
-		return probeResult.getPacketsAndFrames().getPacketOrFrameOrSubtitle();
+		return Optional.ofNullable(probeResult.getPacketsAndFrames())
+		        .map(PacketsAndFramesType::getPacketOrFrameOrSubtitle)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	public List<ProgramType> getPrograms() {
-		return probeResult.getPrograms().getProgram();
+		return Optional.ofNullable(probeResult.getPrograms())
+		        .map(ProgramsType::getProgram)
+		        .map(Collections::unmodifiableList)
+		        .orElse(List.of());
 	}
 
 	public static final Predicate<StreamType> filterVideoStream = streamType -> streamType
