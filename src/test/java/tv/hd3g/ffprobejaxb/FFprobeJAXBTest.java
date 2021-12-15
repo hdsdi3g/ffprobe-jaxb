@@ -25,14 +25,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UncheckedIOException;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import tv.hd3g.commons.IORuntimeException;
 
 class FFprobeJAXBTest {
 
@@ -84,7 +83,7 @@ class FFprobeJAXBTest {
 	void testBadXml() throws IOException {
 		ffprobeJAXB = new FFprobeJAXB(outNope, warns::add);
 		assertThrows(NumberFormatException.class, () -> new FFprobeJAXB(out1, warns::add));
-		assertThrows(IORuntimeException.class, () -> new FFprobeJAXB(outErr, warns::add));
+		assertThrows(UncheckedIOException.class, () -> new FFprobeJAXB(outErr, warns::add));
 	}
 
 	@Test

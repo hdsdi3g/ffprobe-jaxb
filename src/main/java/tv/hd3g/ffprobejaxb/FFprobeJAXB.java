@@ -22,6 +22,7 @@ import static javax.xml.XMLConstants.ACCESS_EXTERNAL_SCHEMA;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -53,8 +54,6 @@ import org.ffmpeg.ffprobe.ProgramsType;
 import org.ffmpeg.ffprobe.StreamType;
 import org.ffmpeg.ffprobe.StreamsType;
 import org.xml.sax.SAXException;
-
-import tv.hd3g.commons.IORuntimeException;
 
 public class FFprobeJAXB {
 
@@ -93,9 +92,9 @@ public class FFprobeJAXB {
 
 			probeResult = unmarshaller.unmarshal(document, FfprobeType.class).getValue();
 		} catch (JAXBException | SAXException | ParserConfigurationException e) {
-			throw new IORuntimeException(new IOException("Can't load XML content", e));
+			throw new UncheckedIOException(new IOException("Can't load XML content", e));
 		} catch (final IOException e1) {
-			throw new IORuntimeException(e1);
+			throw new UncheckedIOException(e1);
 		}
 	}
 
