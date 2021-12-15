@@ -21,7 +21,7 @@
 		<dependency>
 			<groupId>tv.hd3g.commons</groupId>
 			<artifactId>interfaces</artifactId>
-			<version>1.0.0</version>
+			<version>5.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -48,7 +48,7 @@
 		<dependency>
 			<groupId>tv.hd3g.commons</groupId>
 			<artifactId>codepolicyvalidation</artifactId>
-			<version>0.4.0</version>
+			<version>1.0.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
