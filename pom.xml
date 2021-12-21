@@ -3,7 +3,7 @@
 
     <groupId>tv.hd3g</groupId>
     <artifactId>ffprobejaxb</artifactId>
-    <version>5.0.1-SNAPSHOT</version>
+    <version>5.0.1</version>
     <packaging>jar</packaging>
 
     <name>ffprobejaxb</name>
