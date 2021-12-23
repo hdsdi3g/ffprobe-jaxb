@@ -42,4 +42,4 @@ Lists of 43 third-party dependencies.
      (MIT License) SLF4J API Module (org.slf4j:slf4j-api:1.7.32 - http://www.slf4j.org)
      (Apache License, Version 2.0) SnakeYAML (org.yaml:snakeyaml:1.23 - http://www.snakeyaml.org)
      (GNU Lesser General Public License, Version 3) CodePolicyValidation (tv.hd3g.commons:codepolicyvalidation:1.0.2 - https://github.com/hdsdi3g/codepolicyvalidation)
-     (GNU Lesser General Public License, Version 3) Commons Interfaces (tv.hd3g.commons:interfaces:6.1.1 - https://github.com/hdsdi3g/mvn-starter)
+     (GNU Lesser General Public License, Version 3) Commons Interfaces (tv.hd3g.commons:interfaces:7.0.0 - https://github.com/hdsdi3g/mvn-starter)
